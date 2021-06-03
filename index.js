@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/api/notes", (req, res) => {
-  fs.readFile(path.join(__dirname, "./db/db.json"), (err, data) => {
+  fs.readFile(path.join(__dirname, "./public/db/db.json"), (err, data) => {
     if (err) throw err;
     const notes = JSON.parse(data);
     res.json(notes);
@@ -29,7 +29,7 @@ app.get("/api/notes", (req, res) => {
 //Method to create a new note
 
 app.post("/api/notes", (req, res) => {
-  fs.readFile(path.join(__dirname, "./db/db.json"), (err, data) => {
+  fs.readFile(path.join(__dirname, "./public/db/db.json"), (err, data) => {
     if (err) throw err;
     const notes = JSON.parse(data);
     const newNote = req.body;
@@ -37,9 +37,13 @@ app.post("/api/notes", (req, res) => {
     notes.push(newNote);
 
     const makeNote = JSON.stringify(notes);
-    fs.writeFile(path.join(__dirname, "./db/db.json"), makeNote, (err) => {
-      if (err) throw err;
-    });
+    fs.writeFile(
+      path.join(__dirname, "./public/db/db.json"),
+      makeNote,
+      (err) => {
+        if (err) throw err;
+      }
+    );
     res.json(newNote);
   });
 });
@@ -49,18 +53,22 @@ app.post("/api/notes", (req, res) => {
 app.delete("/api/notes/:id", (req, res) => {
   console.log("delete: ", req.params);
   const noteID = req.params.id;
-  fs.readFile(path.join(__dirname, "./db/db.json"), (err, data) => {
+  fs.readFile(path.join(__dirname, "./public/db/db.json"), (err, data) => {
     if (err) throw err;
     const notes = JSON.parse(data);
     const notesArray = notes.filter((item) => {
       return item.id !== noteID;
     });
 
-    fs.writeFile("./db/db.json", JSON.stringify(notesArray), (err, data) => {
-      console.log("The note has been deleted");
-      if (err) throw err;
-      res.json(notesArray);
-    });
+    fs.writeFile(
+      "./public/db/db.json",
+      JSON.stringify(notesArray),
+      (err, data) => {
+        console.log("The note has been deleted");
+        if (err) throw err;
+        res.json(notesArray);
+      }
+    );
   });
 });
 
