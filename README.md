@@ -2,13 +2,11 @@
 
 ## Implementation Details
 
-1. This aplication incorporates the use of class constructors for the team members (Manager, Engineer and Intern under the Employee class)
+1. This aplication incorporates the use of Express package and is able to create, edit, save and delete notes.
 
-2. Consolidated redundancy in CSS file of some of the styling properties by grouping selector types under the same conditions.
+2. Utlilises Javascript for handling request from database and API.
 
-3. This application utilises JQuery and Bootstrap frameworks.
-
-4. 4 different test have been created to validate the library (Intern.js, Manager.js, Enployee.js and Engineer.js)
+3. In addition, this application has ben deployed to Heroku hub
 
 ## Screenshot
 
@@ -20,9 +18,13 @@ The following images show the web application's appearance and functionality:
 
 ## Deployed Application
 
-Please click the following link:
+Heroku app link:
 
-https://luisbonilla89.github.io/Homework-10-Team-Profile/
+https://notetaker8907.herokuapp.com/
+
+Repository:
+
+https://github.com/LuisBonilla89/Homework-11
 
 ## License
 
